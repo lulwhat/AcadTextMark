@@ -1,0 +1,4 @@
+C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net452\acad_cross_texts.csprojAssemblyReference.cache
+C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net452\acad_cross_texts.AssemblyInfoInputs.cache
+C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net452\acad_cross_texts.AssemblyInfo.cs
+C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net452\acad_cross_texts.csproj.CoreCompileInputs.cache
