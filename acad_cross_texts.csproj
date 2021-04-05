@@ -1,28 +1,29 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net47</TargetFramework>
+    <TargetFramework>net35</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <WarningLevel>5</WarningLevel>
+    <DefineConstants>TRACE</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
-    <Reference Include="accoremgd">
+	  <!-->Reference Include="accoremgd">
       <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\accoremgd.dll</HintPath>
       <Private>false</Private>
-    </Reference>
+    </Reference-->
     <Reference Include="Acdbmgd">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\acdbmgd.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2011\acdbmgd.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="Acmgd">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\acmgd.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2011\acmgd.dll</HintPath>
       <Private>false</Private>
     </Reference>
     <Reference Include="acdbmgdbrep">
-      <HintPath>C:\Program Files\Autodesk\AutoCAD 2021\acdbmgdbrep.dll</HintPath>
+      <HintPath>C:\Program Files\Autodesk\AutoCAD 2011\acdbmgdbrep.dll</HintPath>
       <Private>false</Private>
     </Reference>
   </ItemGroup>
