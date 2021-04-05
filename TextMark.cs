@@ -171,6 +171,7 @@ namespace AcadTextPlacement
             if (pline != null)
             {
                 int nv = pline.NumberOfVertices;
+                double shift = scale_value / 40.0;
                 for (int i = 0; i < nv - 1; i++)
                 {
                     try
@@ -185,6 +186,7 @@ namespace AcadTextPlacement
                         double offset_y = 0.0;
                         // offset is added when text signs are either above or under the line
                         // cases of line aligment that affect x and y offset
+                        // x+ y-
                         if ((dy < 0) & (dx > 0))
                         {
                             if ((pos_value == "Верх") | (pos_value == "В"))
@@ -200,40 +202,69 @@ namespace AcadTextPlacement
                                 offset_y = -(Math.Sin(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value);
                             }
                         }
-
-                        //need adjustments
+                        // x- y-
                         else if ((dy < 0) & (dx < 0))
                         {
                             if ((pos_value == "Верх") | (pos_value == "В"))
                             {
                                 offset_d = -(0.6 + (0.002 * scale_value));
-                                offset_x = Math.Cos(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
-                                offset_y = Math.Sin(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
+                                offset_x = Math.Cos(1.5 * Math.PI + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
+                                offset_y = Math.Sin(1.5 * Math.PI + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
                             }
                             else if ((pos_value == "Низ") | (pos_value == "Н"))
                             {
                                 offset_d = -(0.6 + (0.002 * scale_value));
-                                offset_x = Math.Cos(Math.PI / 2 + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
-                                offset_y = Math.Sin(Math.PI / 2 + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
+                                offset_x = Math.Cos(1.5 * Math.PI + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
+                                offset_y = -(Math.Sin(1.5 * Math.PI + Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value);
                             }
                         }
-
-                        // need adjustments
+                        // x- y+
                         else if ((dx < 0) & (dy > 0))
                         {
                             if ((pos_value == "Верх") | (pos_value == "В"))
                             {
                                 offset_d = -(0.6 + (0.002 * scale_value));
-                                offset_x = dx / d * 0.5 / 1000.0 * scale_value;
-                                offset_y = dy / d * 0.5 / 1000.0 * scale_value;
+                                offset_x = Math.Cos(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
+                                offset_y = -(Math.Sin(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value);
                             }
                             else if ((pos_value == "Низ") | (pos_value == "Н"))
                             {
                                 offset_d = -(0.6 + (0.002 * scale_value));
-                                offset_x = Math.Cos(Math.Acos(dx / d) - Math.PI / 2) * 0.5 / 1000.0 * scale_value;
-                                offset_y = Math.Sin(Math.Acos(dx / d) - Math.PI / 2) * 0.5 / 1000.0 * scale_value;
+                                offset_x = -(Math.Cos(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value);
+                                offset_y = Math.Sin(Math.PI / 2 - Math.Acos(dx / d)) * 0.5 / 1000.0 * scale_value;
                             }
                         }
+                        // x- y0
+                        else if ((dx < 0) & (dy == 0))
+                        {
+                            if ((pos_value == "Верх") | (pos_value == "В"))
+                            {
+                                offset_d = -(0.6 + (0.002 * scale_value));
+                                offset_y = 0.5 / 1000.0 * scale_value;
+                            }
+                            else if ((pos_value == "Низ") | (pos_value == "Н"))
+                            {
+                                offset_d = -(0.6 + (0.002 * scale_value));
+                                offset_y = - 0.5 / 1000.0 * scale_value;
+                            }
+
+                        }
+                        // x0 y-
+                        else if ((dx == 0) & (dy < 0))
+                        {
+                            if ((pos_value == "Верх") | (pos_value == "В"))
+                            {
+                                offset_d = -(0.6 + (0.002 * scale_value));
+                                offset_x = - 0.5 / 1000.0 * scale_value;
+                            }
+                            else if ((pos_value == "Низ") | (pos_value == "Н"))
+                            {
+                                offset_d = -(0.6 + (0.002 * scale_value));
+                                offset_x = 0.5 / 1000.0 * scale_value;
+                            }
+
+                        }
+                        // x+ y+
                         else
                         {
                             if ((pos_value == "Верх") | (pos_value == "В"))
@@ -252,48 +283,60 @@ namespace AcadTextPlacement
 
                         // compute text rotation based on line coordinate sector position
                         double rotation = 0.0;
-
-                        if ((dx > 0) && (dy > 0))
+                        if ((dx > 0) & (dy > 0))
                         {
                             rotation = Math.Acos(dx/d);
                         }
-                        else if ((dx > 0) && (dy < 0))
+                        else if ((dx > 0) & (dy < 0))
                         {
                             rotation = 2*Math.PI - Math.Acos(dx/d);
                         }
-                        else if ((dx < 0) && (dy > 0))
+                        else if ((dx < 0) & (dy > 0))
                         {
                             rotation = Math.Acos(dx/d) + Math.PI;
                         }
-                        else if ((dx < 0) && (dy < 0))
+                        else if ((dx < 0) & (dy < 0))
                         {
                             rotation = Math.PI - Math.Acos(dx/d);
                         }
-                        else if ((dx == 0) && (dy != 0))
+                        else if ((dx == 0) & (dy != 0))
                         {
                             rotation = Math.PI / 2;
+                        }
+                        else if ((dx < 0) & (dy == 0))
+                        {
+                            rotation = 0;
                         }
                         else
                         {
                             rotation = Math.Acos(dx/d);
                         }
 
-                        if (d > scale_value / 40)
+                        if (d > scale_value / 100)
                         {
-                            // j is a step on a line segment
-                            for (
-                                    double j = scale_value / 33;
-                                    j < d - scale_value / 33;
-                                    j += scale_value / 10
-                                )
+                            // st is a step on a line segment
+                            // shift stores distance between previous segment last sign and endpoint
+                            // also case when shift is greater than step
+                            double st;
+                            if (shift >= (scale_value / 14.2))
+                            {
+                                st = scale_value / 100;
+                            }
+                            else
+                            {
+                                st = scale_value / 14.2 - shift;
+                            }
+                            while (st < (d - scale_value / 100.0))
                             {
                                 Point3d pt = new Point3d(
-                                    pt1.X + (j + offset_d) * dx / d + offset_x,
-                                    pt1.Y + (j + offset_d) * dy / d + offset_y,
+                                    pt1.X + (st + offset_d) * dx / d + offset_x,
+                                    pt1.Y + (st + offset_d) * dy / d + offset_y,
                                     pt1.Z
                                     );
                                 pts.Add(pt);
                                 rot.Add(rotation);
+                                shift = d - st;
+                                st += scale_value / 14.2;
                             }
                         }
                     }

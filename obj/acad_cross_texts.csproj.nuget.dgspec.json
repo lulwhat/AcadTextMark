@@ -1,32 +1,30 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\acad_cross_texts.csproj": {}
+    "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj": {}
   },
   "projects": {
-    "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\acad_cross_texts.csproj": {
+    "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\acad_cross_texts.csproj",
+        "projectUniqueName": "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj",
         "projectName": "acad_cross_texts",
-        "projectPath": "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\acad_cross_texts.csproj",
-        "packagesPath": "C:\\Users\\lulwh\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\obj\\",
+        "projectPath": "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj",
+        "packagesPath": "C:\\Users\\baidak\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\lulwh\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\baidak\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
-          "net35"
+          "net47"
         ],
         "sources": {
-          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
-          "net35": {
-            "targetAlias": "net35",
+          "net47": {
+            "targetAlias": "net47",
             "projectReferences": {}
           }
         },
@@ -37,8 +35,8 @@
         }
       },
       "frameworks": {
-        "net35": {
-          "targetAlias": "net35",
+        "net47": {
+          "targetAlias": "net47",
           "dependencies": {
             "Microsoft.NETFramework.ReferenceAssemblies": {
               "suppressParent": "All",
