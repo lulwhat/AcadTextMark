@@ -1,11 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "Yw3SCNxqT7QKJ6GYQqbtdi5XQO55Kg8k21wD4DY2HVwAAyU+drdI3jCK6Kv0cMU4qIbQpqMVO/G0U86NfFSxQA==",
+  "dgSpecHash": "xRIpel8yLmycSGSMdnWUiaRm++oJHQ+XV/5BK0CS6Bj/q9M3dTGNUDdLQsgUhvWaDCLwfeDxquNheQaaW4/JIA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj",
+  "projectFilePath": "C:\\Users\\lulwh\\Source\\Repos\\lulwhat\\TextMark\\acad_cross_texts.csproj",
   "expectedPackageFiles": [
-    "C:\\Users\\baidak\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
-    "C:\\Users\\baidak\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net47\\1.0.0\\microsoft.netframework.referenceassemblies.net47.1.0.0.nupkg.sha512"
+    "C:\\Users\\lulwh\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\lulwh\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net20\\1.0.0\\microsoft.netframework.referenceassemblies.net20.1.0.0.nupkg.sha512"
   ],
   "logs": []
 }

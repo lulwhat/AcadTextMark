@@ -6,3 +6,9 @@ C:\Users\baidak\acad_py_scripts\AcadTextPlacement\bin\Debug\net47\acad_cross_tex
 C:\Users\baidak\acad_py_scripts\AcadTextPlacement\bin\Debug\net47\acad_cross_texts.pdb
 C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net47\acad_cross_texts.dll
 C:\Users\baidak\acad_py_scripts\AcadTextPlacement\obj\Debug\net47\acad_cross_texts.pdb
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.csprojAssemblyReference.cache
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.AssemblyInfoInputs.cache
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.AssemblyInfo.cs
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.csproj.CoreCompileInputs.cache
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.dll
+C:\Users\lulwh\Source\Repos\lulwhat\TextMark\obj\Debug\net47\acad_cross_texts.pdb
