@@ -1,8 +1,11 @@
 {
   "version": 2,
-  "dgSpecHash": "6fpM+uzo/YYn/EDkHLCbBKRF/5H3wd6O0Ph+mo2knvX6IOXQEwF5LNs3y9cwFSOtWzRRM4GZsYBLECD7tL3p6Q==",
+  "dgSpecHash": "Yw3SCNxqT7QKJ6GYQqbtdi5XQO55Kg8k21wD4DY2HVwAAyU+drdI3jCK6Kv0cMU4qIbQpqMVO/G0U86NfFSxQA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\lulwh\\source\\repos\\lulwhat\\TextMark\\acad_cross_texts.csproj",
-  "expectedPackageFiles": [],
+  "projectFilePath": "C:\\Users\\baidak\\acad_py_scripts\\AcadTextPlacement\\acad_cross_texts.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\baidak\\.nuget\\packages\\microsoft.netframework.referenceassemblies\\1.0.0\\microsoft.netframework.referenceassemblies.1.0.0.nupkg.sha512",
+    "C:\\Users\\baidak\\.nuget\\packages\\microsoft.netframework.referenceassemblies.net47\\1.0.0\\microsoft.netframework.referenceassemblies.net47.1.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

@@ -136,10 +136,17 @@ namespace AcadTextPlacement
                     for (int i=0; i < entPts.Count; i++)
                     {
                         DBText dbt = new DBText();
+                        var textStyles = (TextStyleTable)tr.GetObject(db.TextStyleTableId, OpenMode.ForRead);
                         dbt.SetDatabaseDefaults();
                         dbt.Position = entPts[i];
                         dbt.Height = 2 / 1000.0 * scale_value;
                         dbt.Rotation = rot[i];
+                        try
+                        {
+                            dbt.TextStyleId = textStyles["SPDS"];
+                        }
+                        catch
+                        {  }
                         if ((pos_value == "Центр") | (pos_value == "Ц"))
                         {
                             dbt.Justify = AttachmentPoint.MiddleCenter;
