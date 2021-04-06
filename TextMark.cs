@@ -4,14 +4,17 @@ using Autodesk.AutoCAD.DatabaseServices;
 using Autodesk.AutoCAD.EditorInput;
 using Autodesk.AutoCAD.Geometry;
 using Autodesk.AutoCAD.Runtime;
+using Autodesk.AutoCAD.Colors;
 using System;
 using System.Collections.Generic;
 using System.Collections;
+
 
 namespace AcadTextPlacement
 {
     public class TextMark
     {
+        public double shift;
         // class that saves previosly used options for TextMark
         public class DataSaver
         {
@@ -135,34 +138,41 @@ namespace AcadTextPlacement
 
                     for (int i=0; i < entPts.Count; i++)
                     {
-                        DBText dbt = new DBText();
                         var textStyles = (TextStyleTable)tr.GetObject(db.TextStyleTableId, OpenMode.ForRead);
-                        dbt.SetDatabaseDefaults();
-                        dbt.Position = entPts[i];
-                        dbt.Height = 2 / 1000.0 * scale_value;
-                        dbt.Rotation = rot[i];
+                        MText mt = new MText();
+                        mt.SetDatabaseDefaults();
+                        mt.Location = entPts[i];
+                        mt.Height = 2 / 1000.0 * scale_value;
+                        mt.TextHeight = 2 / 1000.0 * scale_value;
+                        mt.UseBackgroundColor = true;
+                        mt.BackgroundFill = true;
                         try
                         {
-                            dbt.TextStyleId = textStyles["SPDS"];
+                            mt.TextStyleId = textStyles["SPDS"];
                         }
-                        catch
-                        {  }
+                        catch { }
+                        try
+                        {
+                            mt.TextStyleId = textStyles["spds"];
+                        }
+                        catch{ }
+                        mt.BackgroundScaleFactor = 1.0;
+                        mt.Rotation = rot[i];
                         if ((pos_value == "Центр") | (pos_value == "Ц"))
                         {
-                            dbt.Justify = AttachmentPoint.MiddleCenter;
-                        }    
+                            mt.Attachment = AttachmentPoint.MiddleCenter;
+                        }
                         else if ((pos_value == "Низ") | (pos_value == "Н"))
                         {
-                            dbt.Justify = AttachmentPoint.TopLeft;
+                            mt.Attachment = AttachmentPoint.TopLeft;
                         }
                         else
                         {
-                            dbt.Justify = AttachmentPoint.BottomLeft;
+                            mt.Attachment = AttachmentPoint.BottomLeft;
                         }
-                        dbt.AlignmentPoint = entPts[i];
-                        dbt.TextString = txt_value;
-                        btr.AppendEntity(dbt);
-                        tr.AddNewlyCreatedDBObject(dbt, true);
+                        mt.Contents = txt_value;
+                        btr.AppendEntity(mt);
+                        tr.AddNewlyCreatedDBObject(mt, true);
                     }
                 }
                 tr.Commit();
@@ -178,7 +188,7 @@ namespace AcadTextPlacement
             if (pline != null)
             {
                 int nv = pline.NumberOfVertices;
-                double shift = scale_value / 40.0;
+                double shift = scale_value / 500.0;
                 for (int i = 0; i < nv - 1; i++)
                 {
                     try
@@ -319,35 +329,63 @@ namespace AcadTextPlacement
                             rotation = Math.Acos(dx/d);
                         }
 
-                        if (d > scale_value / 100)
+
+                        // st is a step on a line segment
+                        // shift stores distance between previous segment last sign and endpoint
+                        // also case when shift is greater than step
+                        double standard_step = scale_value / 11.7647;
+                        double step;
+
+                        if (i == 0)
                         {
-                            // st is a step on a line segment
-                            // shift stores distance between previous segment last sign and endpoint
-                            // also case when shift is greater than step
-                            double st;
-                            if (shift >= (scale_value / 14.2))
+                            step = scale_value / 500;
+
+                            Point3d pt = new Point3d(
+                                pt1.X + (step + offset_d) * dx / d + offset_x,
+                                pt1.Y + (step + offset_d) * dy / d + offset_y,
+                                pt1.Z
+                                );
+                            pts.Add(pt);
+                            rot.Add(rotation);
+                            shift = d - step;
+                            step += standard_step;
+
+                            while (step < (d - scale_value / 500.0))
                             {
-                                st = scale_value / 100;
-                            }
-                            else
-                            {
-                                st = scale_value / 14.2 - shift;
-                            }
-                            while (st < (d - scale_value / 100.0))
-                            {
-                                Point3d pt = new Point3d(
-                                    pt1.X + (st + offset_d) * dx / d + offset_x,
-                                    pt1.Y + (st + offset_d) * dy / d + offset_y,
+                                    pt = new Point3d(
+                                    pt1.X + (step + offset_d) * dx / d + offset_x,
+                                    pt1.Y + (step + offset_d) * dy / d + offset_y,
                                     pt1.Z
                                     );
                                 pts.Add(pt);
                                 rot.Add(rotation);
-                                shift = d - st;
-                                st += scale_value / 14.2;
+                                shift = d - step;
+                                step += standard_step;
                             }
                         }
-                    }
 
+                        else if (d + shift < standard_step)
+                        {
+                            shift += d;
+                        }
+                        else
+                        {
+                            step = standard_step - shift;
+                            while (step < (d - scale_value / 500.0))
+                            {
+                                Point3d pt = new Point3d(
+                                    pt1.X + (step + offset_d) * dx / d + offset_x,
+                                    pt1.Y + (step + offset_d) * dy / d + offset_y,
+                                    pt1.Z
+                                    );
+                                pts.Add(pt);
+                                rot.Add(rotation);
+                                shift = d - step;
+                                step += standard_step;
+                            }
+                        }
+
+                    }
                     catch { }
                 }
             }
