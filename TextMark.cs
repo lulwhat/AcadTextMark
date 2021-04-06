@@ -134,7 +134,7 @@ namespace AcadTextPlacement
                     List<double> rot = new List<double>();
                     CollectPoints(tr, ent, entPts, rot, scale_value, pos_value);
 
-                    // Add a physical DBPoint at each Point3d
+                    // Add MText to found DBPoint position
 
                     for (int i=0; i < entPts.Count; i++)
                     {
